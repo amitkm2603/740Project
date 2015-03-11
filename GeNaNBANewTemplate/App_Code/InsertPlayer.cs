@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -62,14 +63,23 @@ using System.Web;
 
         }
 
-        public void insertGameDataDB(string date, string time, string team1, string team2)
+        public int insertGameDataDB(string date, string time, string team1, string team2)
         {
             SqlConnection conn = new SQLFactory().getConnection();
-            string sql = "insert into game values ((select ISNULL(max(game_id),0)+1 from game),'" + date + "','" + time + "','" + team1 + "','" + team2 + "')";
+            //get game_id
+            string sql = "select ISNULL(max(game_id),0)+1 from game";
             SqlCommand cmd = new SqlCommand(sql, conn);
-        //    conn.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            int game_id = (int)dt.Rows[0][0];
+            sda.Dispose();
+            //insert into game table
+            sql = "insert into game values ("+game_id+",'" + date + "','" + time + "','" + team1 + "','" + team2 + "')";
+            cmd = new SqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
+            return game_id;
 
         }
         public int getMaxGameDB(string date, string time, string team1, string team2)
@@ -111,5 +121,18 @@ using System.Web;
             conn.Close();
 
         }
+        public void insertPlayByPlay(List<string[]> row_list)
+          {
+              SqlConnection conn = new SQLFactory().getConnection();
+            foreach (string[] row in row_list)
+            {
+                string sql = "INSERT INTO play_by_play (game_id,game_time,team_name_1,team_id_1,team_1_comments,team_1_score,team_2_score,team_name_2,team_id_2,team_2_comments,game_half,load_dttm)" +
+                    "values ("+row[0]+",'"+row[1]+"','"+row[2]+"','"+row[3]+"','"+row[4]+"',"+row[5]+","+row[6]+
+                    ",'" + row[7] + "','" + row[8] + "','" + row[9] + "','" + row[10] + "','" + DateTime.Now.ToString() + "')";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+          }
     }
 //}

@@ -20,7 +20,7 @@ public partial class form1 : System.Web.UI.Page
         {
             Worker worker = new Worker();
             string url_main = TextBox1.Text;
-            string[] url = new string[3];
+            string[] url = new string[4];
             url[0] = url_main;
             if (url_main.Contains("?org_id"))
             {
@@ -30,23 +30,29 @@ public partial class form1 : System.Web.UI.Page
             }
             url[1] = url_main + "?period_no=1";
             url[2] = url_main + "?period_no=2";
+            url[3] = url_main.Replace("index", "play_by_play");
             string[] half = new string[3];
             half[0] = "full";
             half[1] = "1";
             half[2] = "2";
 
    
-            for (int i = 0; i < 3;i++ )
+            for (int i = 0; i < 4;i++ )
             {
 
                 if (i == 0)
                     worker.deletePlayer();
-                bool tableExist = mainProcess(worker, url[i], i, half[i]);
+                if(i<3)
+                {
+                    bool tableExist = mainProcess(worker, url[i], i, half[i]);
                 if (tableExist)
                     break;
-                
+                }
                 if (i == 2)
                    worker.execBoxScoreCreationWarehouse();
+                if (i == 3)
+                    processPlayByPlay(worker, url[i], i);
+            
             }
                       
           
@@ -61,6 +67,39 @@ public partial class form1 : System.Web.UI.Page
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+    protected void processPlayByPlay(Worker worker, string url, int count)
+        {
+            string sc = worker.getUrl(url);
+            String team1_data, team2_data;
+            string[,] game_time1 = new string[1, 2];
+            string[] words; //storing tables
+            string[] st = { "<table " };
+            string[] tr_tokenizer3 = { "</table>" };
+            int game_id = 0;
+            if (HttpContext.Current.Session["game_id"] != null)
+                game_id = (int)HttpContext.Current.Session["game_id"];
+
+            string[,] teamDict = (string[,])HttpContext.Current.Session["team_dict"];
+            
+
+            //splitting into tables
+            words = sc.Split(st, StringSplitOptions.RemoveEmptyEntries);
+ 
+            team2_data = words[words.Length - 1];  //last table
+             team1_data = words[words.Length - 3];  // 3rd last table
+
+             string[] team1_data_1 = team1_data.Split(tr_tokenizer3, StringSplitOptions.RemoveEmptyEntries);
+             string team1_str = "<HTML><BODY> <table " + team1_data_1[0] + "</table> </BODY></HTML>";
+
+            string[] team2_data_1 = team2_data.Split(tr_tokenizer3, StringSplitOptions.RemoveEmptyEntries);
+            string team2_str = "<HTML><BODY> <table " + team2_data_1[0] + "</table> </BODY></HTML>";
+
+          
+
+            worker.processPlayByPlay(team1_str, teamDict, game_id, "1");
+            worker.processPlayByPlay(team2_str, teamDict, game_id, "2");
 
         }
         protected bool mainProcess(Worker worker, string url, int count, string half)
@@ -127,9 +166,11 @@ public partial class form1 : System.Web.UI.Page
  
             if (tableExist < 1)
             {
-                if(count==0)
-                worker.insertGameData((string)HttpContext.Current.Session["game_date"], (string)HttpContext.Current.Session["game_time"], teamDict[0, 1], teamDict[1, 1]);
-                
+                if (count == 0)
+                {
+                int game_id =   worker.insertGameData((string)HttpContext.Current.Session["game_date"], (string)HttpContext.Current.Session["game_time"], teamDict[0, 1], teamDict[1, 1]);
+                HttpContext.Current.Session["game_id"] = game_id;
+                }
                 string season = DropDownList1.SelectedValue;
                 HttpContext.Current.Session["season"] = season;
                 //Processing player tables
@@ -141,7 +182,9 @@ public partial class form1 : System.Web.UI.Page
             }
             else
             {
-                TextBox2.Text = "The match already exists in the database!";
+                TextBox2.Text = "The match already exists in the database!\r\nMatch details: \r\n" +
+                  "Date: " + HttpContext.Current.Session["game_date"] + "\r\nTime: " + HttpContext.Current.Session["game_time"] +
+                  "\r\n"+ teamDict[0, 0] + " VS " + teamDict[1, 0] + "";
                 return true;
             }
       

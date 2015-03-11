@@ -19,7 +19,7 @@
             </asp:DropDownList>
         </p>
         <p>
-            <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" Height="71px" Width="436px"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" Height="120px" Width="436px" TextMode="multiline" ReadOnly="true"></asp:TextBox>
        </p>
     </form>
 

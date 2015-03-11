@@ -143,7 +143,7 @@ public string processGameTable(string table_name)
                 if(rowCount == 0)
                 {
                     teamName = cells[0].InnerText.ToString().Replace("&nbsp;", "null").Trim();
-                    if (teamName != null && teamName.Contains("'")) ;
+                    if (teamName != null && teamName.Contains("'"))
                         teamName = teamName.Replace("'", "_");
                 }
                 //skipping row 1 since it contains headings
@@ -217,10 +217,10 @@ public string processGameTable(string table_name)
         InsertPlayer insertPlayer = new InsertPlayer();
         return insertPlayer.getMaxGameDB(date, time, team1, team2);
     }
-         public void insertGameData(string date, string time, string team1, string team2)
+         public int insertGameData(string date, string time, string team1, string team2)
         {
             InsertPlayer insertPlayer = new InsertPlayer();
-             insertPlayer.insertGameDataDB(date, time, team1, team2);
+             return insertPlayer.insertGameDataDB(date, time, team1, team2);
         }
          public string getPlayerSequence(String str)
 {
@@ -244,6 +244,93 @@ public string processGameTable(string table_name)
         }
 
 
-    }
+        public void processPlayByPlay(string table_name, string[,] teamDict, int game_id, string game_half)
+        {
+            InsertPlayer insertPlayer = new InsertPlayer();
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(table_name);
+
+            HtmlNodeCollection rows = doc.DocumentNode.SelectNodes("//tr");
+            int counter = 1;
+            string team1="", team2="", team_id_1="", team_id_2="";
+            string[] score_tokenizer = { "-" };
+            int row_count = rows.Count;
+
+            List<string[]> table_rows = new List<string[]>();
+
+            foreach (var row in rows)
+            {
+                 HtmlNodeCollection cells = row.SelectNodes("th|td");
+                //string array to store 4 cells
+                string[] str_row = new string[11];
+                //excluding processing of the last row
+                    if (counter == (row_count - 1))
+                        break;
+                    //table header
+                if (counter == 1)
+                {
+                    team1 = cells[1].InnerText.ToString().Replace("&nbsp;", "null").Trim();
+                    if (team1 != null && team1.Contains("'")) 
+                         team1 = team1.Replace("'", "_");
+                    team2 = cells[3].InnerText.ToString().Replace("&nbsp;", "null").Trim();
+                    if (team2 != null && team2.Contains("'"))
+                        team2 = team2.Replace("'", "_");
+                    if (teamDict != null)
+                    {
+                        if (teamDict[0, 0].Equals(team1))
+                        {
+                            team_id_1 = teamDict[0, 1];
+                            team_id_2 = teamDict[1, 1];
+                        }
+                        else
+                        {
+                            team_id_2 = teamDict[0, 1];
+                            team_id_1 = teamDict[1, 1];
+                        }
+
+                    }
+                }
+                //rest of the tale
+                else
+                {
+                    str_row[0] =  game_id.ToString();
+                    str_row[1] = remove_invalid_chars(cells[0].InnerText.ToString().Replace("&nbsp;", " ").Trim());
+                    str_row[2] = team1;
+                    str_row[3] = team_id_1;
+                    str_row[4] = remove_invalid_chars(cells[1].InnerText.ToString().Replace("&nbsp;", " ").Trim());
+                    string temp  = remove_invalid_chars(cells[2].InnerText.ToString().Replace("&nbsp;", " ").Trim());
+                    string[] temp_split = temp.Split(score_tokenizer, StringSplitOptions.RemoveEmptyEntries);
+                    str_row[5] = temp_split[0];
+                    str_row[6] = temp_split[1];
+                    str_row[7] = team2;
+                    str_row[8] = team_id_2;
+                    str_row[9] = remove_invalid_chars(cells[3].InnerText.ToString().Replace("&nbsp;", " ").Trim());
+                    str_row[10] = game_half;
+                    //add to row  list
+                    table_rows.Add(str_row);
+                }
+
+                
+                counter++;
+            }
+
+            insertPlayer.insertPlayByPlay(table_rows);
+
+        }
+        public string remove_invalid_chars(string str)
+        {
+            if (str != null && (str.Trim()).Length < 1)
+                str = " ";
+            if (str.Contains("'"))
+                str = str.Replace("'", "");
+            if (str.Contains("\\"))
+                str = str.Replace("\\", "");
+            if (str.Contains("/"))
+                str = str.Replace("/", "");
+
+            return str;
+        }
+
+}
    
 //}
