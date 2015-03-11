@@ -12,8 +12,8 @@ public partial class form1 : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         
-     //  if( HttpContext.Current.Session["user"] == null)
-       //    Response.Redirect("/login.aspx");
+       if( HttpContext.Current.Session["user"] == null)
+           Response.Redirect("/login.aspx");
     }
 
      protected void Button1_Click1(object sender, EventArgs e)
@@ -177,7 +177,9 @@ public partial class form1 : System.Web.UI.Page
                 string s,s1 = "";
                 s=worker.processTeamTable("<HTML><BODY> <table " + team2 + "</BODY></HTML>");
                 s1=worker.processTeamTable(team1_str);
-                TextBox2.Text = "Tables loaded!";
+                TextBox2.Text = "The match has been processed successfully!\r\nMatch details: \r\n" +
+                  "Date: " + HttpContext.Current.Session["game_date"] + "\r\nTime: " + HttpContext.Current.Session["game_time"] +
+                  "\r\n" + teamDict[0, 0] + " VS " + teamDict[1, 0] + "";
                 return false;
             }
             else

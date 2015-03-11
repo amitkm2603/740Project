@@ -9,7 +9,6 @@ public partial class MasterBoxSpace : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (HttpContext.Current.Session["user"] == null)
-            Response.Redirect("/login.aspx");
+         
     }
 }

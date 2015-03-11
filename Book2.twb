@@ -1,0 +1,480 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook source-platform='win' version='8.3' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8300.15.0219.2230                                -->
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='play_by_play (GeNaNBANew)' inline='true' name='sqlserver.42073.904662604167' version='8.3'>
+      <connection authentication='sspi' class='sqlserver' dbname='GeNaNBANew' odbc-native-protocol='yes' server='DELL'>
+        <relation name='play_by_play' table='[dbo].[play_by_play]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>game_id</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[game_id]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>game_id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>game_time</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[game_time]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>game_time</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_name_1</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[team_name_1]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_name_1</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_id_1</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[team_id_1]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_id_1</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_1_comments</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[team_1_comments]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_1_comments</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>500</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_1_score</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[team_1_score]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_1_score</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_2_score</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[team_2_score]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_2_score</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_name_2</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[team_name_2]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_name_2</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_id_2</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[team_id_2]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_id_2</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>team_2_comments</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[team_2_comments]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>team_2_comments</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>500</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>game_half</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[game_half]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>game_half</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>load_dttm</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[load_dttm]</local-name>
+            <parent-name>[play_by_play]</parent-name>
+            <remote-alias>load_dttm</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Game Half' datatype='string' name='[game_half]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Game Id' datatype='integer' name='[game_id]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='Game Time' datatype='string' datatype-customized='true' name='[game_time]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Load Dttm' datatype='datetime' name='[load_dttm]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='Team 1 Comments' datatype='string' name='[team_1_comments]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Team 1 Score' datatype='integer' name='[team_1_score]' role='measure' type='quantitative'>
+      </column>
+      <column caption='Team 2 Comments' datatype='string' name='[team_2_comments]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Team 2 Score' datatype='integer' name='[team_2_score]' role='measure' type='quantitative'>
+      </column>
+      <column caption='Team Id 1' datatype='string' name='[team_id_1]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Team Id 2' datatype='string' name='[team_id_2]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Team Name 1' datatype='string' name='[team_name_1]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Team Name 2' datatype='string' name='[team_name_2]' role='dimension' type='nominal'>
+      </column>
+      <column-instance column='[game_half]' derivation='None' name='[none:game_half:nk]' pivot='key' type='nominal' />
+      <column-instance column='[team_1_score]' derivation='None' name='[none:team_1_score:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[team_2_score]' derivation='None' name='[none:team_2_score:qk]' pivot='key' type='quantitative' />
+      <group name='[Set 1]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter function='member' level='[none:game_half:nk]' member='&quot;1&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </group>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;[sqlserver.42073.904662604167].[none:team_2_score:qk]&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;[sqlserver.42073.904662604167]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[sqlserver.42073.904662604167].[none:team_1_score:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Canada&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='play_by_play (GeNaNBANew)' name='sqlserver.42073.904662604167' />
+          </datasources>
+          <datasource-dependencies datasource='sqlserver.42073.904662604167'>
+            <column caption='Game Half' datatype='string' name='[game_half]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Game Id' datatype='integer' name='[game_id]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Game Time' datatype='string' datatype-customized='true' name='[game_time]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[game_half]' derivation='None' name='[none:game_half:nk]' pivot='key' type='nominal' />
+            <column-instance column='[game_id]' derivation='None' name='[none:game_id:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[game_time]' derivation='None' name='[none:game_time:nk]' pivot='key' type='nominal' />
+            <column-instance column='[team_1_score]' derivation='None' name='[none:team_1_score:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[team_2_score]' derivation='None' name='[none:team_2_score:qk]' pivot='key' type='quantitative' />
+            <column caption='Team 1 Score' datatype='integer' name='[team_1_score]' role='measure' type='quantitative'>
+            </column>
+            <column caption='Team 2 Score' datatype='integer' name='[team_2_score]' role='measure' type='quantitative'>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[sqlserver.42073.904662604167].[none:game_half:nk]' context='true'>
+            <groupfilter function='member' level='[none:game_half:nk]' member='&quot;1&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[sqlserver.42073.904662604167].[none:game_id:ok]'>
+            <groupfilter function='member' level='[none:game_id:ok]' member='13' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <sort class='natural' column='[sqlserver.42073.904662604167].[none:game_time:nk]' direction='DESC' />
+          <slices>
+            <column>[sqlserver.42073.904662604167].[none:game_half:nk]</column>
+            <column>[sqlserver.42073.904662604167].[none:game_id:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane id='2'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <lod column='[sqlserver.42073.904662604167].[none:game_time:nk]' />
+            </encodings>
+          </pane>
+          <pane id='3' y-axis-name='[sqlserver.42073.904662604167].[none:team_1_score:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <lod column='[sqlserver.42073.904662604167].[none:game_time:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#d8504c' />
+                <format attr='mark-markers-mode' value='all' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='4' y-axis-name='[sqlserver.42073.904662604167].[none:team_2_score:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <lod column='[sqlserver.42073.904662604167].[none:game_time:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#26794a' />
+                <format attr='mark-markers-mode' value='all' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([sqlserver.42073.904662604167].[none:team_1_score:qk] + [sqlserver.42073.904662604167].[none:team_2_score:qk])</rows>
+        <cols>[sqlserver.42073.904662604167].[none:game_time:nk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[sqlserver.42073.904662604167].[:Measure Names]</field>
+          <field>[sqlserver.42073.904662604167].[none:game_half:nk]</field>
+          <field>[sqlserver.42073.904662604167].[none:game_id:ok]</field>
+          <field>[sqlserver.42073.904662604167].[none:game_time:nk]</field>
+          <field>[sqlserver.42073.904662604167].[none:team_1_score:qk]</field>
+          <field>[sqlserver.42073.904662604167].[none:team_2_score:qk]</field>
+          <field>[sqlserver.42073.904662604167].[sum:team_1_score:qk]</field>
+          <field>[sqlserver.42073.904662604167].[tmi:game_time:qk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      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
+      A4IAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

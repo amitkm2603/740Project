@@ -19,6 +19,8 @@ public partial class Default4 : System.Web.UI.Page
             Show("Successfully logged out!");
             Session.Clear();
         }
+        if(HttpContext.Current.Session["user"]!=null)
+            Response.Redirect("/DashBoard.aspx");
     }
     protected void Login_Submit_Click(object sender, EventArgs e)
     {
@@ -32,7 +34,8 @@ public partial class Default4 : System.Web.UI.Page
         }
         else
         {
-             Show("Invalid UserId or Password! Please try again!");
+            Show("Invalid UserId or Password! Please try again!");
+            HttpContext.Current.Session["user"] = null;
             UserName.Text = "";
             Password.Text = "";
         }

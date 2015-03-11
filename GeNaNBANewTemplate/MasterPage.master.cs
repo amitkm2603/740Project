@@ -11,12 +11,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (HttpContext.Current.Session["user"] == null)
-        {
-
-            Response.Redirect("/login.aspx");
-        }
-        else
+        if (HttpContext.Current.Session["user"] != null)
             Label1.Text = "Hello, " +  HttpContext.Current.Session["user"].ToString();
     }
     private void Show(string message)
